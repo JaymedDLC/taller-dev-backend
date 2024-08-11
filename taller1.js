@@ -13,11 +13,7 @@ function resolvedor(a, b, c, signo) {
 }
 
 function mejorParidad (x) {
-	if (x%2) {
-  	return false;
-  } else {
-  	return true;
-  }
+  	return !(x%2); 
 }
 
 
