@@ -17,6 +17,10 @@ function desglosarString(palabra, opcion) {
   return Error
 }
 
+console.log(desglosarString("Murcielagos", "vocales"))
+console.log(desglosarString("Murcielagos", "consonantes"))
+//console.log(desglosarString("Murcielagos", "vos"))
+
 //Punto 2
 function twoSum(lista, total) {
   return []
