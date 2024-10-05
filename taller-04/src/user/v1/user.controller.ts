@@ -29,5 +29,19 @@ async function getUsersByFaction(faction: string): Promise<UserType[]> {
   return users.filter(user => user.faction === faction);
 }
 
+async function addUser(newUser: UserType): Promise<UserType> {
+  const users = await readUsers();
+  newUser.id = users.length ? users[users.length - 1].id + 1 : 1;
+  users.push(newUser);
+
+  //SIMULANDO DASE DE BATOS
+  fs.writeFileSync('./database.json', JSON.stringify(users, null, 2));
+
+  return newUser;
+}
+
 // EXPORT CONTROLLER FUNCTIONS
-export { readUsers, getUsersByHobby, userExists, getTeamExperience, getUsersByFaction };
+export { readUsers, getUsersByHobby, userExists, getTeamExperience, getUsersByFaction, addUser };
+
+
+//NO ME detect los cambios diomio

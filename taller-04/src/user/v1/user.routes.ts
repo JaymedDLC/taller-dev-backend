@@ -50,12 +50,22 @@ async function GetUsersByFaction(request: Request, response: Response) {
   });
 }
 
+async function AddUser(request: Request, response: Response) {
+  const newUser = request.body;
+  const user = await addUser(newUser);
+  response.status(201).json({
+    message: "User created successfully.",
+    user: user,
+  });
+}
+
 // DECLARE ENDPOINTS
 userRoutes.get("/", GetUsers);
 userRoutes.get("/hobby", GetUsersByHobby); //ruta1
 userRoutes.get("/exists", UserExists); // ruta2
 userRoutes.get("/team-experience", TeamExperience); // ruta3
 userRoutes.get("/by-faction", GetUsersByFaction); // ruta4
+userRoutes.post("/", AddUser); // ruta5
 
 // EXPORT ROUTES
 export default userRoutes;
