@@ -1,0 +1,7 @@
+{
+    "users": [
+      { "id": 1, "name": "Robin Restrepo", "carrera": "Psicologia", "hobby": "leer", "experience": 5, "faction": "A" },
+      { "id": 2, "name": "Maria Perez", "carrera": "Ingenieria", "hobby": "correr", "experience": 3, "faction": "B" }
+    ]
+  }
+  
