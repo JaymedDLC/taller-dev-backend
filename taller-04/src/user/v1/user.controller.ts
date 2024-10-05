@@ -17,5 +17,12 @@ async function userExists(id: number): Promise<boolean> {
   return users.some(user => user.id === id);
 }
 
+async function getTeamExperience(ids: number[]): Promise<number> {
+  const users = await readUsers();
+  return users
+    .filter(user => ids.includes(user.id))
+    .reduce((acc, user) => acc + user.experience, 0);
+}
+
 // EXPORT CONTROLLER FUNCTIONS
-export { readUsers, getUsersByHobby, userExists };
+export { readUsers, getUsersByHobby, userExists, getTeamExperience };

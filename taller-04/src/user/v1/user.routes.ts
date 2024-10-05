@@ -32,10 +32,20 @@ async function UserExists(request: Request, response: Response) {
   });
 }
 
+async function TeamExperience(request: Request, response: Response) {
+  const ids = (request.query.ids as string).split(",").map(Number);
+  const totalExperience = await getTeamExperience(ids);
+  response.status(200).json({
+    message: "Success.",
+    totalExperience: totalExperience,
+  });
+}
+
 // DECLARE ENDPOINTS
 userRoutes.get("/", GetUsers);
 userRoutes.get("/hobby", GetUsersByHobby); //ruta1
 userRoutes.get("/exists", UserExists); // ruta2
+userRoutes.get("/team-experience", TeamExperience); // ruta3
 
 // EXPORT ROUTES
 export default userRoutes;
