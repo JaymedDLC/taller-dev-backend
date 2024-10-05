@@ -9,7 +9,7 @@ async function readUsers(): Promise<UserType[]> {
 
 async function getUsersByHobby(hobby: string): Promise<UserType[]> {
   const users = await readUsers();
-  return users.filter(user => user.hobby === hobby);
+  return users.filter(user => user.hobbies.includes(hobby));
 }
 
 async function userExists(id: number): Promise<boolean> {
@@ -17,12 +17,13 @@ async function userExists(id: number): Promise<boolean> {
   return users.some(user => user.id === id);
 }
 
-async function getTeamExperience(ids: number[]): Promise<number> {
+async function getTeamExperience(team: string): Promise<number> {
   const users = await readUsers();
   return users
-    .filter(user => ids.includes(user.id))
-    .reduce((acc, user) => acc + user.experience, 0);
+    .filter(user => user.team === team)
+    .reduce((acc, user) => acc + user.years, 0); 
 }
+
 
 // EXPORT CONTROLLER FUNCTIONS
 export { readUsers, getUsersByHobby, userExists, getTeamExperience };
