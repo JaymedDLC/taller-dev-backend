@@ -24,6 +24,10 @@ async function getTeamExperience(team: string): Promise<number> {
     .reduce((acc, user) => acc + user.years, 0); 
 }
 
+async function getUsersByFaction(faction: string): Promise<UserType[]> {
+  const users = await readUsers();
+  return users.filter(user => user.faction === faction);
+}
 
 // EXPORT CONTROLLER FUNCTIONS
-export { readUsers, getUsersByHobby, userExists, getTeamExperience };
+export { readUsers, getUsersByHobby, userExists, getTeamExperience, getUsersByFaction };

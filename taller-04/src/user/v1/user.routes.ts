@@ -41,11 +41,21 @@ async function TeamExperience(request: Request, response: Response) {
   });
 }
 
+async function GetUsersByFaction(request: Request, response: Response) {
+  const faction = request.query.faction as string;
+  const users = await getUsersByFaction(faction);
+  response.status(200).json({
+    message: "Success.",
+    users: users,
+  });
+}
+
 // DECLARE ENDPOINTS
 userRoutes.get("/", GetUsers);
 userRoutes.get("/hobby", GetUsersByHobby); //ruta1
 userRoutes.get("/exists", UserExists); // ruta2
 userRoutes.get("/team-experience", TeamExperience); // ruta3
+userRoutes.get("/by-faction", GetUsersByFaction); // ruta4
 
 // EXPORT ROUTES
 export default userRoutes;
