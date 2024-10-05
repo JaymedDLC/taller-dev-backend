@@ -23,9 +23,19 @@ async function GetUsersByHobby(request: Request, response: Response) {
   });
 }
 
+async function UserExists(request: Request, response: Response) {
+  const userId = Number(request.query.id);
+  const exists = await userExists(userId);
+  response.status(200).json({
+    message: "Success.",
+    exists: exists,
+  });
+}
+
 // DECLARE ENDPOINTS
 userRoutes.get("/", GetUsers);
-userRoutes.get("/hobby", GetUsersByHobby);
+userRoutes.get("/hobby", GetUsersByHobby); //ruta1
+userRoutes.get("/exists", UserExists); // ruta2
 
 // EXPORT ROUTES
 export default userRoutes;
